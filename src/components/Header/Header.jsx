@@ -1,5 +1,5 @@
 import './Header.css'
-function Header() {
+function Header(props) {
     return <header className="header">
         <div className="left-menu">
             <svg className="menu-icon" focusable="false" viewBox="0 0 24 24">
@@ -13,7 +13,15 @@ function Header() {
         </div>
 
         <div className="search">
-            <input className="search-bar" placeholder="Search mail" />
+            <form action="" onSubmit={(e) => {
+                e.preventDefault();
+                const val = e.target.searchVal.value;
+                props.setSearch(val);
+                e.target.reset()
+            }}>
+                <input className="search-bar" type='text' placeholder="Search mail" name='searchVal' />
+            </form>
+
         </div>
     </header>
 }
